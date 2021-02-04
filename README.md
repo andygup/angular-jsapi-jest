@@ -1,12 +1,12 @@
 # angular-jsapi-jest
 
-This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) and Angular 11+. It demonstrates using static JS API methods and doesn't provide any mocks for services.
+This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) ES modules and Angular 11+. It demonstrates using static JS API methods and doesn't provide any mocks for services. The JS API library is available as ES modules via `npm install @arcgis/core`.
 
 You are in the right place if you ran into `Cannot use import statement outside a module` errors when trying run tests against the JS API.
 
 ### Things to note about the configuration
 
-Here's all the modifications I made to the default project.
+Here's all the modifications I made to a default Angular CLI project. There are some extra modules in package.json that probably aren't needed for this repo.
 
 0. I installed Jest and jest-preset-angular.
 
