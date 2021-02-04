@@ -35,7 +35,18 @@ module.exports = function (api) {
  }, 
 ```
 
-3. Added a new file `setupJest.js`.
+I also added the following:
+
+```js
+  setupFilesAfterEnv: ['<rootDir>/src/app/setupJest.ts'],
+  transformIgnorePatterns: ['node_modules/(?!@arcgis)'],
+```
+
+3. Added a new file `setupJest.js` and included this line:
+
+```js
+import 'jest-preset-angular';
+```
 
 4. Added the following to `ts.config.spec.json`:
 
