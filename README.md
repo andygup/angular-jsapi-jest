@@ -70,7 +70,7 @@ Run `npm install`.
 
 ### Dev build
 
-After install, make sure the map displays with no errors by running `npm start --open`.
+After install, make sure the map displays with no errors by running `ng start --open`.
 
 ### Test
 
