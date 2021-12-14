@@ -8,8 +8,7 @@
     "test": "jest",
     "clear": "jest --clearCache",
     "test-watch": "jest --watch",
-    "watch": "ng build --watch --configuration development",
-    "test-ng": "ng test"
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {
