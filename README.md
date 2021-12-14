@@ -1,6 +1,6 @@
 # angular-jsapi-jest
 
-This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) ES modules and Angular 13+. It is based on the Angular CLI sample app at (github.com/jsapi-resources/esm-samples)[https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-angular-cli]). It demonstrates using static JS API methods and doesn't provide any mocks for services. The JS API library is available as ES modules via `npm install @arcgis/core`.
+This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) ES modules and Angular 13+. It is based on the Angular CLI sample app at [github.com/jsapi-resources/esm-samples](https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-angular-cli). It demonstrates using static JS API methods and doesn't provide any mocks for services. The JS API library is available as ES modules via `npm install @arcgis/core`.
 
 You are in the right place if you ran into `Cannot use import statement outside a module` errors when trying run jest tests against the JS API.
 
@@ -85,7 +85,7 @@ Ran all test suites.
 
 ### Licensing
 
-ArcGIS API for JavaScript, Copyright 2020 Esri
+ArcGIS API for JavaScript, Copyright 2021 Esri
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
