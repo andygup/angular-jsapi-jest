@@ -1,71 +1,55 @@
 # angular-jsapi-jest
 
-This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) ES modules and Angular 11+. It demonstrates using static JS API methods and doesn't provide any mocks for services. The JS API library is available as ES modules via `npm install @arcgis/core`.
+This is a basic proof-of-concept for using Jest with the ArcGIS API for JavaScript (JS API) ES modules and Angular 13+. It is based on the Angular CLI sample app at (github.com/jsapi-resources/esm-samples[https://github.com/Esri/jsapi-resources/tree/master/esm-samples/jsapi-angular-cli]). It demonstrates using static JS API methods and doesn't provide any mocks for services. The JS API library is available as ES modules via `npm install @arcgis/core`.
 
-You are in the right place if you ran into `Cannot use import statement outside a module` errors when trying run tests against the JS API.
+You are in the right place if you ran into `Cannot use import statement outside a module` errors when trying run jest tests against the JS API.
 
 ### Things to note about the configuration
 
-Here's all the modifications I made to a default Angular CLI project. There are some extra modules in package.json that probably aren't needed for this repo.
+Here's all the modifications I made to the Angular CLI sample. 
 
 0. I installed Jest and jest-preset-angular.
-
-1. Added a new file named `babel.config.js`. Then I added this to the file:
+ 
+1. Added jest config info the `package.json`, The ArcGIS API requires several additions to the `transformIgnorePatterns`:
  
 ```js
-module.exports = function (api) {
-  api.cache(true);
-
-  const presets = ['@babel/preset-env'];
-  const plugins = ['@babel/transform-runtime'];
-
-  return {
-    presets,
-    plugins,
-  };
-};
-```
- 
-2. Modified `jest.config.js` to include `babel-jest`, and `ts-test` doesn't include `.js` files. This allowed jest to parse the JS API ES modules:
- 
-```js
- transform: {
-   '^.+\\.(ts|html)$': 'ts-jest',
-   '^.+\\.js$': 'babel-jest' 
- }, 
+  "jest": {
+    "preset": "jest-preset-angular",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@angular|@arcgis|@esri|@stencil|@popperjs)/)"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/app/setup-jest.ts"
+    ]
+  }
 ```
 
-I also added the following:
+2. Added a new file `setup-jest.js` and included this line:
 
 ```js
-  setupFilesAfterEnv: ['<rootDir>/src/app/setupJest.ts'],
-  transformIgnorePatterns: ['node_modules/(?!@arcgis)'],
+import 'jest-preset-angular/setup-jest';
 ```
 
-3. Added a new file `setupJest.js` and included this line:
+3. Added the following to `ts.config.spec.json`:
 
 ```js
-import 'jest-preset-angular';
-```
-
-4. Added the following to `ts.config.spec.json`:
-
-```js
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true    
-```
-
-5. Added the following to `tsconfig.json`
-
-```js
-    "types": [
+   "types": [
       "jest"
-    ],   
+    ]  
 ```
 
-6. Deleted `test.ts`.
+4. Added the following to `tsconfig.json`
 
-7. Removed `test.ts` from `tsconfig.spec.json`
+```js
+  "compilerOptions": {
+    "esModuleInterop": true,
+  }
+ 
+```
+
+5. Deleted `test.ts`.
+
+6. Removed `test.ts` from `tsconfig.spec.json`
 
 ```js
   "files": [
@@ -73,7 +57,7 @@ import 'jest-preset-angular';
   ],
 ```
 
-6. Removed all the various Karma and Jasmine bits I could find from the default Angular CLI install.
+7. Removed all the various Karma and Jasmine bits I could find from the default Angular CLI install.
 
 ### Install
 
@@ -89,12 +73,12 @@ Shut down the dev server with `Control C` and then run `npm test`. The tests sho
 
 ```json
 
-PASS  src/app/app.component.spec.ts
+ PASS  src/app/app.component.spec.ts
 
 Test Suites: 2 passed, 2 total
-Tests:       3 passed, 3 total
+Tests:       4 passed, 4 total
 Snapshots:   0 total
-Time:        3.723 s
+Time:        4.314 s
 Ran all test suites.
 
 ```
