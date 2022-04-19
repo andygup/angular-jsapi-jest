@@ -19,15 +19,21 @@ Here's all the modifications I made to the Angular CLI sample.
       "node_modules/(?!(@angular|@arcgis|@esri|@stencil|@popperjs)/)"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/app/setup-jest.ts"
+      "<rootDir>/src/setupJest.ts"
     ]
   }
 ```
 
-2. Added a new file `setup-jest.js` and included this line:
+2. Added a new file `setupJest.js` and included mocks, as well as a mock to avoid `ResizeObserver` errors:
 
 ```js
-import 'jest-preset-angular/setup-jest';
+window.ResizeObserver =
+    window.ResizeObserver ||
+    jest.fn().mockImplementation(() => ({
+        disconnect: jest.fn(),
+        observe: jest.fn(),
+        unobserve: jest.fn(),
+    }));
 ```
 
 3. Added the following to `ts.config.spec.json`:
