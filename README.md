@@ -24,7 +24,7 @@ Here's all the modifications I made to the Angular CLI sample.
   }
 ```
 
-2. Added a new file `setupJest.js` and included mocks, as well as a mock to avoid `ResizeObserver` errors:
+2. Added a new file `setupJest.ts` and included mocks, as well as a mock to avoid `ResizeObserver` errors:
 
 ```js
 window.ResizeObserver =
@@ -71,7 +71,7 @@ Run `npm install`.
 
 ### Dev build
 
-After install, make sure the map displays with no errors by running `ng start --open`.
+After install, make sure the map displays with no errors by running `ng serve --open`.
 
 ### Test
 
@@ -80,11 +80,15 @@ Shut down the dev server with `Control C` and then run `npm test`. The tests sho
 ```json
 
  PASS  src/app/app.component.spec.ts
+  AppComponent
+    ✓ should create the app (38 ms)
+    ✓ verify map component init (114 ms)
+    ✓ verify map service init (3 ms)
 
-Test Suites: 2 passed, 2 total
-Tests:       4 passed, 4 total
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        4.314 s
+Time:        4.552 s, estimated 10 s
 Ran all test suites.
 
 ```
