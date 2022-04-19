@@ -5,10 +5,6 @@ import MapView from "@arcgis/core/views/MapView";
 import WebMap from "@arcgis/core/WebMap";
 import MapService from "./map.service";
 
-export function promiseDelay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
